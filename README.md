@@ -1,5 +1,7 @@
 # Vue Product Showcase - Módulo 7
 
+🔗 **Demo en vivo:** [https://vue-product-showcase-bento.vercel.app]
+
 Aplicación SPA (Single Page Application) desarrollada en Vue 3 que funciona como un catálogo de productos dinámico. El proyecto cumple con todos los requerimientos de la rúbrica del Módulo 7, aplicando una arquitectura limpia, manejo de estado centralizado y pruebas automatizadas, pero elevado a los estándares de la industria actual.
 
 ## Tecnologías y Justificación de Arquitectura
