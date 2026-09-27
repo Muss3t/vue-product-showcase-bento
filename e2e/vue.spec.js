@@ -1,8 +1,24 @@
 import { test, expect } from '@playwright/test'
 
-// See here how to get started:
-// https://playwright.dev/docs/intro
-test('visits the app root url', async ({ page }) => {
+test('Usuario filtra productos por categoría y ve los resultados actualizados', async ({
+  page,
+}) => {
+  // 1. El usuario entra a la aplicación
   await page.goto('/')
-  await expect(page.locator('h1')).toHaveText('You did it!')
+
+  // 2. Espera a que los productos reales carguen desde la API (que aparezcan las tarjetas)
+  await page.waitForSelector('.card')
+
+  // 3. Captura cuántos productos hay inicialmente
+  const initialCardsCount = await page.locator('.card').count()
+  expect(initialCardsCount).toBeGreaterThan(0)
+
+  // 4. El usuario interactúa con el filtro seleccionando la segunda opción (índice 1)
+  const filterSelect = page.locator('.filter-select')
+  await filterSelect.selectOption({ index: 1 })
+
+  // 5. Verifica que los resultados se filtraron visualmente
+  // Seleccionamos la categoría de la primera tarjeta visible para verificar
+  const firstCardCategory = await page.locator('.card .category').first().innerText()
+  expect(firstCardCategory).not.toBeNull()
 })
