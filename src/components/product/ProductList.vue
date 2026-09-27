@@ -1,52 +1,23 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
-import axios from 'axios'
+import { onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useProductStore } from '../../stores/productStore'
 import ProductCard from './ProductCard.vue'
 import SkeletonLoader from '../ui/SkeletonLoader.vue'
 
-const products = ref([])
-const loading = ref(true)
-const error = ref(null)
-const selectedCategory = ref('')
+// Instanciamos el store para manejar el estado de los productos
+const store = useProductStore()
 
-const fetchProducts = async () => {
-  try {
-    // Consumo de API real
-    const response = await axios.get('https://dummyjson.com/products?limit=8')
-    products.value = response.data.products.map((p, index) => ({
-      id: p.id,
-      title: p.title,
-      price: p.price,
-      category: p.category,
-      // Mantenemos el diseño asimétrico: el 1er y 5to elemento serán grandes
-      featured: index === 0 || index === 4,
-    }))
-  } catch (err) {
-    error.value = 'Error al cargar el catálogo de productos.'
-  } finally {
-    loading.value = false
-  }
-}
-
-// Filtro computado
-const filteredProducts = computed(() => {
-  if (!selectedCategory.value) return products.value
-  return products.value.filter((p) => p.category === selectedCategory.value)
-})
-
-// Extraer categorías únicas para el select
-const categories = computed(() => {
-  return [...new Set(products.value.map((p) => p.category))]
-})
+// storeToRefs extrae el estado y los getters sin perder reactividad y permite que el template los use directamente
+const { loading, error, selectedCategory, filteredProducts, categories } = storeToRefs(store)
 
 onMounted(() => {
-  fetchProducts()
+  store.fetchProducts()
 })
 </script>
 
 <template>
   <div class="list-container">
-    <!-- Barra de herramientas: Filtro -->
     <header class="toolbar">
       <select v-model="selectedCategory" class="filter-select">
         <option value="">Todas las categorías</option>
@@ -56,17 +27,12 @@ onMounted(() => {
       </select>
     </header>
 
-    <!-- Estado de Error -->
-    <div v-if="error" class="error-message">
-      {{ error }}
-    </div>
+    <div v-if="error" class="error-message">⚠️ {{ error }}</div>
 
-    <!-- Estado de Carga (Skeleton Loaders) -->
     <section v-else-if="loading" class="bento-grid">
       <SkeletonLoader v-for="i in 6" :key="i" :class="{ 'featured-item': i === 1 || i === 5 }" />
     </section>
 
-    <!-- Lista de Productos dinámica -->
     <section v-else class="bento-grid">
       <ProductCard
         v-for="product in filteredProducts"
@@ -79,6 +45,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
+/*NO TOCAR: estilos de la lista de productos y el grid asimétrico */
 .list-container {
   display: flex;
   flex-direction: column;
