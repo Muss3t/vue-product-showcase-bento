@@ -30,6 +30,7 @@ export const useProductStore = defineStore('product', () => {
         title: p.title,
         price: p.price,
         category: p.category,
+        image: p.thumbnail,
         featured: index === 0 || index === 4,
       }))
     } catch (err) {
