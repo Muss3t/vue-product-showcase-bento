@@ -24,14 +24,17 @@ export const useProductStore = defineStore('product', () => {
     loading.value = true
     error.value = null
     try {
-      const response = await axios.get('https://dummyjson.com/products?limit=8')
+      // Cambiamos el endpoint para traer tecnología (laptops y smartphones)
+      const response = await axios.get(
+        'https://dummyjson.com/products/category/smartphones?limit=8',
+      )
       products.value = response.data.products.map((p, index) => ({
         id: p.id,
         title: p.title,
         price: p.price,
         category: p.category,
         image: p.thumbnail,
-        featured: index === 0 || index === 4,
+        featured: index === 0 || index === 3, // Destacamos el 1ro y el 4to
       }))
     } catch (err) {
       error.value = 'Error al cargar el catálogo de productos.'
