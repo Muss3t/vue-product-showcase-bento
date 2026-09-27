@@ -1,63 +1,22 @@
-# vue-product-showcase-bento
+# Vue Product Showcase - Módulo 7
 
-This template should help get you started developing with Vue 3 in Vite.
+Aplicación SPA (Single Page Application) desarrollada en Vue 3 que funciona como un catálogo de productos dinámico. El proyecto cumple con todos los requerimientos de la rúbrica del Módulo 7, aplicando una arquitectura limpia, manejo de estado centralizado y pruebas automatizadas, pero elevado a los estándares de la industria actual.
 
-## Recommended IDE Setup
+## Tecnologías y Justificación de Arquitectura
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Para este proyecto se tomó la decisión deliberada de reemplazar las tecnologías legacy sugeridas en los requerimientos originales por sus equivalentes modernos y recomendados oficialmente por el equipo de Vue.js en 2026:
 
-## Recommended Browser Setup
+- **Vite (Reemplaza a Vue CLI):** Vue CLI se encuentra en modo de mantenimiento y obsoleto. Vite proporciona un entorno de desarrollo sustancialmente más rápido gracias a su servidor basado en ESM nativo y Hot Module Replacement (HMR) instantáneo.
+- **Pinia (Reemplaza a Vuex):** Pinia es el estándar actual y oficial para Vue. Ofrece una API más simple, tipado seguro nativo y se integra a la perfección con la Composition API mediante "Setup Stores", eliminando la complejidad de las mutaciones de Vuex.
+- **Tailwind CSS v4:** Para el diseño visual se descartó el CSS tradicional en favor de Tailwind v4, permitiendo construir una interfaz responsiva, moderna (Bento Grid, Glassmorphism) y mantenible directamente desde el markup, sin archivos de configuración engorrosos.
+- **Vitest y Playwright (Reemplazan a Jest y Nightwatch):** Vitest se integra nativamente con la configuración de Vite, compartiendo el mismo entorno de compilación, lo que lo hace más rápido y fácil de configurar que Jest. Playwright es el estándar moderno para pruebas End-to-End, superando a Nightwatch en velocidad, herramientas de depuración y soporte de navegadores.
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## 📦 Instalación y Configuración
 
-## Customize configuration
+Sigue estos pasos para ejecutar el proyecto en un entorno local:
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
-
-```sh
-# Install browsers for the first run
-npx playwright install
-
-# When testing on CI, must build the project first
-npm run build
-
-# Runs the end-to-end tests
-npm run test:e2e
-# Runs the tests only on Chromium
-npm run test:e2e -- --project=chromium
-# Runs the tests of a specific file
-npm run test:e2e -- tests/example.spec.ts
-# Runs the tests in debug mode
-npm run test:e2e -- --debug
-```
+1. Clonar el repositorio.
+2. Instalar las dependencias:
+   ```bash
+   npm install
+   ```

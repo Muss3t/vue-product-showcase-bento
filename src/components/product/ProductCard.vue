@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <article
-    class="relative flex flex-col justify-end h-full p-8 overflow-hidden transition-all duration-700 border rounded-[2rem] bg-white/[0.02] border-white/5 backdrop-blur-2xl hover:-translate-y-2 hover:bg-white/[0.05] hover:border-white/20 hover:shadow-[0_0_50px_rgba(255,255,255,0.05)] group cursor-pointer"
+    class="card relative flex flex-col justify-end h-full p-8 overflow-hidden transition-all duration-700 border rounded-[2rem] bg-white/[0.02] border-white/5 backdrop-blur-2xl hover:-translate-y-2 hover:bg-white/[0.05] hover:border-white/20 hover:shadow-[0_0_50px_rgba(255,255,255,0.05)] group cursor-pointer"
   >
     <!-- Foco de luz de estudio que se enciende en hover -->
     <div
@@ -32,7 +32,7 @@ defineProps({
     <!-- Contenido -->
     <div class="relative z-10 flex flex-col items-start">
       <span
-        class="px-4 py-1.5 mb-4 text-[10px] font-black tracking-[0.2em] uppercase border rounded-full text-neutral-300 bg-black/40 border-white/10 backdrop-blur-md"
+        class="category px-4 py-1.5 mb-4 text-[10px] font-black tracking-[0.2em] uppercase border rounded-full text-neutral-300 bg-black/40 border-white/10 backdrop-blur-md"
       >
         {{ product.category }}
       </span>
